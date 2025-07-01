@@ -1,0 +1,2 @@
+minikube delete
+minikube start --driver=docker --listen-address=0.0.0.0
