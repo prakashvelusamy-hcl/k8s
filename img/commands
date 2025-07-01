@@ -1,2 +1,13 @@
 minikube delete
 minikube start --driver=docker --listen-address=0.0.0.0
+
+
+
+
+
+# Allow traffic from public IP to Minikube IP
+sudo iptables -t nat -A PREROUTING -p tcp --dport 30080 -j DNAT --to-destination 192.168.49.2:30080
+
+# Allow forwarded traffic
+sudo iptables -t nat -A POSTROUTING -j MASQUERADE
+
