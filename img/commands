@@ -11,3 +11,7 @@ sudo iptables -t nat -A PREROUTING -p tcp --dport 30080 -j DNAT --to-destination
 # Allow forwarded traffic
 sudo iptables -t nat -A POSTROUTING -j MASQUERADE
 
+sudo apt install iptables-persistent
+sudo netfilter-persistent save
+
+
