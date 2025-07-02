@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: prakash-front-deployment
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: prakash-front
+  template:
+    metadata:
+      labels:
+        app: prakash-front
+    spec:
+      containers:
+        - name: prakash-front-container
+          image: prakashvelusamy1999/prakash-hcl-k8s:frontv1
+          ports:
+            - containerPort: 3000
+          env:
+            - name: EMPLOYEE_BASE_REST_API_URL
+              value: "http://prakash-back-service:8080/api/v1/employees"

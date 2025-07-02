@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: prakash-back-deployment
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: prakash-back
+  template:
+    metadata:
+      labels:
+        app: prakash-back
+    spec:
+      containers:
+        - name: prakash-back-container
+          image: prakashvelusamy1999/prakash-hcl-k8s:backendv1
+          ports:
+            - containerPort: 8080
+          env:
+            - name: SPRING_DATASOURCE_URL
+              value: jdbc:mysql://mysql-service:3306/ems?useSSL=false
+            - name: SPRING_DATASOURCE_USERNAME
+              value: app_user
+            - name: SPRING_DATASOURCE_PASSWORD
+              value: password
+            - name: SPRING_JPA_HIBERNATE_DDL_AUTO
+              value: update
+            - name: SPRING_JPA_PROPERTIES_HIBERNATE_DIALECT
+              value: org.hibernate.dialect.MySQLDialect
